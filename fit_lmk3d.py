@@ -126,6 +126,7 @@ def run_fitting():
 
     scale_factor = get_unit_factor('m') / get_unit_factor(unit)
     lmk_3d = scale_factor*np.load(lmk_path)
+    print('lmk_3d:', lmk_3d)
     print("loaded 3d landmark from:", lmk_path)
 
     # model
@@ -175,7 +176,7 @@ def run_fitting():
                                        shape_num=shape_num, expr_num=expr_num, opt_options=opt_options ) # options
 
     # write result
-    output_path = join( output_dir, 'fit_lmk3d_result.obj' )
+    output_path = join( output_dir, 'testloss2.obj' )
     write_simple_obj( mesh_v=mesh_v, mesh_f=mesh_f, filepath=output_path, verbose=False )
 
 # -----------------------------------------------------------------------------
