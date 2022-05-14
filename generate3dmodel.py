@@ -7,7 +7,7 @@ from fit_lmk3d import fit_lmk3d
 from fitting.util import load_binary_pickle, write_simple_obj, safe_mkdir, get_unit_factor
 from smpl_webuser.serialization import load_model
 from fitting.landmarks import load_embedding, landmark_error_3d
-from os.path import join
+from os.path import join, basename, dirname
 
 
 parser = argparse.ArgumentParser(description='Generate a 3D model from a 2d face image.')
@@ -30,11 +30,14 @@ def ProcessInput():
 
 def ProcessOutput():
     opdir = './output'
-    if args.output != None:
-        opdir = args.output
     ipdir = args.input.split('/')
     opfname = ipdir[-1].split('.')
     opfname = opfname[0] + '_3d.obj'
+    
+    if args.output != None:
+        opdir = dirname(args.output)
+        opfname = basename(args.output)
+    
     return opdir, opfname
 
 
